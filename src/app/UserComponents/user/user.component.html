@@ -1,0 +1,48 @@
+<h1>{{name}}</h1>
+<ul>
+  <li>Age: {{age}}</li>
+  <li>E-Mail: {{email}}</li>
+  <li>Address: {{address.street}} {{address.city}}, {{address.state}}</li>
+</ul>
+
+<button (click)="toggleEdit()">{{editTitle}}</button>
+
+<div *ngIf="isEdit">
+  <h1>Edit</h1>
+  <form>
+    <div>
+      <label>Name: </label>
+      <input type="text" name="name" [(ngModel)]="name"/>
+    </div>
+    <div>
+      <label>Age: </label>
+      <input type="number" name="age" [(ngModel)]="age"/>
+    </div>
+    <div>
+      <label>E-Mail: </label>
+      <input type="email" name="email" [(ngModel)]="email"/>
+    </div>
+    <div>
+      <label>Street: </label>
+      <input type="text" name="street" [(ngModel)]="address.street"/>
+    </div>
+    <div>
+      <label>City: </label>
+      <input type="text" name="city" [(ngModel)]="address.city"/>
+    </div>
+    <div>
+      <label>State: </label>
+      <input type="text" name="state" [(ngModel)]="address.state"/>
+    </div>
+  </form>
+</div>
+
+<h1>Hobbies</h1>
+<form (submit)="addHobby(hobby.value)">
+  <label for="hobby">Add New Hobby: </label>
+  <input type="text" #hobby />
+</form>
+<ul>
+  <li *ngFor="let hobby of hobbies;let i = index">{{i+1}}- {{hobby}} <button (click)="removeHobby(i)">X</button></li>
+</ul>
+<a routerLink="/posts">Posts</a>
